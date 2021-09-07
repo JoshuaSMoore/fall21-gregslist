@@ -3,24 +3,24 @@ export function getJobFormTemplate() {
   <form class="bg-white rounded p-3 shadow visually-hidden" onsubmit="app.jobsController.addJob()"
   id="job-form">
   <div class="form-group">
-    <label for="name" class="">Title:</label>
-    <input type="" class="form-control" name="name" id="name" required>
+    <label for="jobTitle" class="">Title:</label>
+    <input type="" class="form-control" name="jobTitle" id="jobTitle" required>
   </div>
   <div class="form-group">
-    <label for="salary" class="">Salary:</label>
-    <input type="number" class="form-control" name="salary" id="salary" required>
+    <label for="rate" class="">Rate:</label>
+    <input type="number" class="form-control" name="rate" id="rate" required>
   </div>
   <div class="form-group">
-  <label for="field" class="">Field:</label>
-  <input type="field" class="form-control" name="field" id="field">
+  <label for="company" class="">Company:</label>
+  <input type="company" class="form-control" name="company" id="company">
 </div>
   <div class="form-group">
-    <label for="description" class="">description:</label>
+    <label for="description" class="">Description:</label>
     <textarea type="text" class="form-control" name="description" id="description" rows="5"></textarea>
   </div>
   <div class="form-group">
-    <label for="img" class="">img:</label>
-    <input type="url" class="form-control" name="img" id="img" required>
+    <label for="hours" class="">Hours:</label>
+    <textarea type="hours" class="form-control" name="hours" id="hours" rows="5"></textarea>
   </div>
   <div class="button-group my-3">
     <button type="reset" class="btn btn-secondary">clear</button>

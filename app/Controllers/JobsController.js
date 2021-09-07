@@ -14,9 +14,10 @@ function _drawJobs() {
 export class JobsController {
   constructor() {
     ProxyState.on('jobs', _drawJobs)
+    jobService.getJob()
   }
   
-  addJob() {
+  async addJob() {
     event.preventDefault() 
     /**
      * @type {HTMLFormElement}
@@ -25,14 +26,14 @@ export class JobsController {
     const form = event.target
    
     const jobData = {
-      name: form.name.value,
-      field: form.field.value,
-      salary: form.salary.value,
+      jobTitle: form.jobTitle.value,
+      company: form.company.value,
+      rate: form.rate.value,
       description: form.description.value,
-      img: form.img.value,
+      hours: form.hours.value
     }
     try {
-      jobService.addJob(jobData)
+      await jobService.addJob(jobData)
     } catch (e) {
       form.make.classList.add('border-danger')
       console.error('testing')
@@ -55,6 +56,14 @@ export class JobsController {
   
   toggleJobForm() {
     document.getElementById('job-form').classList.toggle('visually-hidden')
+  }
+
+  async deleteJob(jobid){
+    try {
+      await jobService.deleteJob(jobid)
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
 }

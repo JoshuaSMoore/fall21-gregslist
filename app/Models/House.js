@@ -20,9 +20,9 @@ get CardTemplate(){
   <img src="${this.imgUrl}" alt="listing image" class="rounded">
   <div class="card-body">
     <h5 class="d-flex justify-content-between">
-    <span >${this.bedrooms} - ${this.levels}</span>
-    <span>${this.year} </span>
-    <span>$ ${this.price}</span>
+    <span >Rooms:${this.bedrooms} - Levels:${this.levels}</span>
+    <span>Built: ${this.year}
+    Price: ${this.price}</span>
     </h5>
         <p>${this.description}</p>
         <button class ="btn btn-danger" onclick="app.housesController.deleteHouse('${this.id}')">Delete</button>

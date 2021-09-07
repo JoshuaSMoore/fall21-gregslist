@@ -18,8 +18,8 @@ export class Car {
         <img src="${this.imgUrl}" alt="listing image" class="rounded">
         <div class="card-body">
           <h5 class="d-flex justify-content-between">
-            <span>${this.make} - ${this.model}</span>
-            <span>$ ${this.price}</span>
+            <span> Make: ${this.make} - Model: ${this.model}</span>
+            <span>Price: ${this.price}</span>
           </h5>
           <p>${this.description}</p>
           <button class ="btn btn-danger" onclick="app.carsController.deleteCar('${this.id}')">Delete</button>
