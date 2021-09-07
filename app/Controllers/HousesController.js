@@ -14,9 +14,10 @@ function _drawHouses() {
 export class HousesController {
   constructor() {
     ProxyState.on('houses', _drawHouses)
+    housesService.getHouses()
   }
   
-  addHouse() {
+  async addHouse() {
     event.preventDefault() 
     /**
      * @type {HTMLFormElement}
@@ -25,18 +26,16 @@ export class HousesController {
     const form = event.target
    
     const houseData = {
-      address: form.address.value,
-      squareft: form.squareft.value,
-      yearbuilt: form.year.value,
+      year: form.year.value,
       bathrooms: form.bathrooms.value,
       price: form.price.value,
-      color: form.color.value,
+      levels: form.levels.value,
       description: form.description.value,
-      img: form.img.value,
-      rooms: form.rooms.value,
+      imgUrl: form.imgUrl.value,
+      bedrooms: form.bedrooms.value,
     }
     try {
-      housesService.addHouse(houseData)
+      await housesService.addHouse(houseData)
     } catch (e) {
       form.make.classList.add('border-danger')
       console.error('testing')
@@ -59,6 +58,15 @@ export class HousesController {
   
   toggleHouseForm() {
     document.getElementById('house-form').classList.toggle('visually-hidden')
+  }
+
+  async deleteHouse(houseid){
+    try{
+      alert('are you positive?')
+      await housesService.deleteHouse(houseid)
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
 }
