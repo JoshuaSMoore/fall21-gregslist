@@ -11,10 +11,10 @@ function _drawCars() {
 export class CarsController {
   constructor() {
     ProxyState.on('cars', _drawCars)
-    //             ^^^^ magic string must match a property on the appstate
+    carsService.getCars()
   }
 
-  addCar() {
+  async addCar() {
     event.preventDefault() // do not forget this line on form submissions
     /**
      * @type {HTMLFormElement}
@@ -27,15 +27,13 @@ export class CarsController {
       make: form.make.value,
       model: form.model.value,
       year: form.year.value,
-      mileage: form.mileage.value,
       price: form.price.value,
-      color: form.color.value,
       description: form.description.value,
-      img: form.img.value
+      imgUrl: form.imgUrl.value
     }
 
     try {
-      carsService.addCar(carData)
+      await carsService.addCar(carData)
     } catch (e) {
       // TODO draw errors
       form.make.classList.add('border-danger')
@@ -55,14 +53,19 @@ export class CarsController {
     document.getElementById('forms').innerHTML = getCarFormTemplate()
   }
 
-  showMiles() {
 
-    // @ts-ignore
-    document.getElementById('miles').textContent = event.target.value
-  }
 
   toggleCarForm() {
     document.getElementById('car-form').classList.toggle('visually-hidden')
+  }
+
+  async deleteCar(carid){
+    try {
+      alert('Are you positive about this choice?')
+      await carsService.deleteCar(carid)
+    } catch (error) {
+    alert(error.message)
+  }
   }
 
 }
